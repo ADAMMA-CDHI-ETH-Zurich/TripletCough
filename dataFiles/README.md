@@ -1,0 +1,1 @@
+Directory should contain the raw .wav files of coughs. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The data in this folder are not publicly available to protect the privacy of the study's participants.
