@@ -56,17 +56,17 @@ The structure of the parameters file is as follows:
 - Lines 17-22 contain parameters for the preprocessing pipeline (In particular, the mel-scaled spectrogram parameters)
 - The remaining lines contain relevant parameters for training, such as learning rate and batch size. You may ignore the parameters regarding testing, i.e., N and K for generating N-way K-shot classification tasks. These are passed as arguments to the command line when running the script.
 
-## Model File
+## Model Architecture File
 
-When running `02_ModelTrainingValidation_TripletMining.py` for training the network, the path to a Model file must be specified. The Model files are: `Model.py`, `Model_alpha_0,1.py`, `Model_alpha_0,2.py`, `Model_alpha_0,5.py`.
+When running `02_ModelTrainingValidation_TripletMining.py` for training the network, the path to a file that contains the network architecture must be specified. The files containing the triplet network architecture (along with the associated CNN architecture) are: `Model.py`, `Model_alpha_0,1.py`, `Model_alpha_0,2.py`, `Model_alpha_0,5.py`.
 
 In `Model.py` the gap parameter g of the triplet loss is set to 1.0.
 In `Model_alpha_0,x.py` the gap parameter g of the triplet loss is set to x.
 
-The Model file contains the triplet network architecture along with the CNN architecture that it employs. It also contains a function that implements the hinge loss for triplets, also known as the triplet loss.
+These files also contain a function that implements the hinge loss for triplets, also known as the triplet loss.
 
-## TripletCough Model 
-The `TripletCough` model presented in the paper can be found in the following location: `weights_testing/rode_close/20201108_065654__Parameters_rode_close_weights.h5`. The code used to train and evaluate this model can be found in the next section which explain how to run the various python scripts available for testing the N way K shot tasks as well as the verification tasks that are reported in the paper.
+## Pretrained model
+We have already trained our triplet network on a data set of voluntary coughs recorded using the RØDE NT1000 studio microphone, as described in the paper. We provide you with the pretrained model file in `weights_testing/rode_close/20201108_065654__Parameters_rode_close_weights.h5`. The code used to evaluate this pretrained model can be found in the next section which explains how to run the various python scripts available for performing the identification and verification tests that are reported in the paper.
 
 
 ## Python Scripts
