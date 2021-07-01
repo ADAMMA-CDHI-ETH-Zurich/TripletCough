@@ -29,7 +29,17 @@ This repository contains the code to reproduce the experiments in the paper Trip
 
 - `dataFiles`: Directory should contain the raw .wav files of coughs. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The data in this folder are not publicly available to protect the privacy of the study's participants.
 
-- `data`: Directory contains the processed .pickle files containing the mel-scaled spectrograms of the coughs from `dataFiles`, which are then split into training, validation, and testing data. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The data in this folder are not publicly available to protect the privacy of the study's participants. 
+- `data`: Directory contains the processed .pickle files containing the mel-scaled spectrograms of the coughs from `dataFiles`, which are then split into training, validation, and testing data. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The entire data set of the paper should be in this folder. However, due to privacy constraints we could only publicly share a small part of the data to protect the privacy of the study's participants. The demo data we included is in the pickle format. You can read the file with the following command in the root directory:
+```
+import pickle
+import os 
+
+# Load Training Data from Pickle Files
+with open(os.path.join("./data/Rode/close/train", "train.pickle"), "rb") as f:
+    (X_train, n_samples_train) = pickle.load(f)
+```
+
+In this case `X_train` as a shape of `(3, 4, 80, 237)` where the dimension 0 represent the participant (here 3 participants), dimension 1 is the number of samples from this given participant. Finally, dimension 2 and 3 represent the dimension of the mel-scaled spectrogram with 80 bands. The `n_samples_train_tutorial` variable contains the number of samples from each participant. Here in this case, we included 4 samples per participants however, in the real data set the `n_samples_train_tutorial` looked like: `[10, 21, 19, 23, 23, 17, 14, 15, 19, 15, 24, 17, 16, 16, 18, 11, 25, 19]` as not all the participants had the same number of samples.
   
   For example, the `data` directory should have the following format:
 
