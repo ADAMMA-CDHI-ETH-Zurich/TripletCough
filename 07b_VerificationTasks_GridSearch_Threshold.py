@@ -35,8 +35,11 @@ data_name = data_split_name[0] + "_" + data_split_name[1]
 data_path = "%s%s/" % ("./data/", data)
 weights_path = "%s%s/" % ("./weights_testing/", weights)
 testing_path = "./testing/"
+
+# Select number of enrollment and test samples
 n_enrollment = 10
 n_test = 5
+
 thresholds = [1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5]
 
 # Load Model

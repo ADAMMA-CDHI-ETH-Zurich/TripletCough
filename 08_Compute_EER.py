@@ -33,10 +33,12 @@ data_name = data_split_name[0] + "_" + data_split_name[1]
 data_path = "%s%s/" % ("./data/", data)
 weights_path = "%s%s/" % ("./weights_testing/", weights)
 testing_path = "./testing/"
-n_enrollment = 10
-n_test = 5
-thresholds = np.linspace(2.0, 2.2, 100)
 
+# Select number of enrollment and test samples
+n_enrollment = 10  # TODO: If you have all the data set uncomment this.
+n_test = 5
+
+thresholds = np.linspace(2.0, 2.2, 100)
 
 # Load Model
 from Model import get_triplet_network, get_embedding_cnn

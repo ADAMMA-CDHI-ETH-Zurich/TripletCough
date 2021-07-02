@@ -12,28 +12,13 @@
 
 # Libraries
 import tensorflow as tf
-tf.compat.v1.set_random_seed(0)
-
-from keras.models import Sequential
-from keras.layers import Conv2D, Activation, Input, concatenate
-from keras.regularizers import l2
-from keras.layers.pooling import MaxPooling2D
-from keras.layers.core import Flatten, Dense
+from tensorflow.keras.layers import Conv2D, Activation, Input, concatenate, MaxPooling2D, Flatten, Dense
+from tensorflow.keras.regularizers import l2
 import tensorflow.keras.backend as K
-from keras.models import Model
+from tensorflow.keras.models import Model, Sequential
 
-
-# Define Sensitivity & Specificity Metrics
-def sensitivity(y_true, y_pred):
-    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
-    return true_positives / (possible_positives + K.epsilon())
-
-
-def specificity(y_true, y_pred):
-    true_negatives = K.sum(K.round(K.clip((1 - y_true) * (1 - y_pred), 0, 1)))
-    possible_negatives = K.sum(K.round(K.clip(1 - y_true, 0, 1)))
-    return true_negatives / (possible_negatives + K.epsilon())
+# Fix the tensorflow random seed
+tf.random.set_seed(0)
 
 
 # Initialize Weights, Bias, Model

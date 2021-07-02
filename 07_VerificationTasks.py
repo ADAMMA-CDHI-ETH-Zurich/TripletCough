@@ -34,6 +34,7 @@ data_path = "%s%s/" % ("./data/", data)
 weights_path = "%s%s/" % ("./weights_testing/", weights)
 testing_path = "./testing/"
 
+# Select number of enrollment and test samples
 n_enrollment = 10
 n_test = 5
 

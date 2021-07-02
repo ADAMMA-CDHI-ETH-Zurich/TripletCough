@@ -12,7 +12,6 @@
 
 # Libraries & Seed
 import numpy as np
-
 np.random.seed(0)
 
 import os
@@ -22,9 +21,10 @@ import numpy.random as rng
 import sys
 import importlib
 
-from keras.optimizers import Adam
 import tensorflow as tf
 import tensorflow.keras.backend as K
+from tensorflow.keras.optimizers import Adam
+
 
 # Parameters
 # import Parameters_10 as param # Comment if executed as python script

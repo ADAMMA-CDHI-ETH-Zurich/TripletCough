@@ -47,7 +47,6 @@ n_tasks = 125
 
 # Load Model
 from Model import get_triplet_network, get_embedding_cnn
-
 model = get_triplet_network((img_height, img_width, 1))
 embedding_cnn = get_embedding_cnn((img_height, img_width, 1))
 
@@ -126,7 +125,6 @@ with open(
 
                 # Test model
                 # Compute embeddings for test sample and for each anchor sample in support set
-
                 embedding_test_img = embedding_cnn.predict(test_img)
                 embedding_support_set = embedding_cnn.predict(support_set)
 
