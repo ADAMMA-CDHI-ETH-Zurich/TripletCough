@@ -374,6 +374,8 @@ These files also contain a function that implements the hinge loss for triplets,
   ```
 
 ### 5.10. -  08_Compute_EER
+- Run this script to compute the equal error rate (EER) of the verification tasks performed on the test set. This script runs verification tests with a set of different values for the threshold, in order to the determine the threshold that results in an equal false acceptance rate (FAR) and false rejection rate (FRR), i.e. the EER. 
+
   In summary, to run the code, please do the following in the root directory of the repository: 
   ```bash
   python ./08_Compute_EER.py trained_weights_path data_folder_path
