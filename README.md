@@ -15,60 +15,89 @@ This repository contains the code to reproduce the experiments in the paper *Tri
 We have already trained our TripletCough network on a data set of voluntary coughs recorded using the RØDE NT1000 studio microphone, as described in the paper. We provide you with the pre-trained model file in `weights_testing/rode_close/20201108_065654__Parameters_rode_close_weights.h5`. The code used to evaluate this pre-trained model can be found in the  section "Python Scripts" which explains how to run the various python scripts available for performing the identification and verification tests that are reported in the paper.
 
 ### 1.1 - Verification Task
-- To use the model to compute the embeddings for the **Verification**, please follow the following procedure:
+- To use the model to for **Verification**, please follow the following procedure:
   ```python
   # Libraries
-  import os
-  import numpy as np
-  import tensorflow as tf
-  import tensorflow.keras.backend as K
+    import os
+    import numpy as np
+    import tensorflow as tf
+    import tensorflow.keras.backend as K
 
-  # Define the relevant variables (number of enrollment and test samples, etc.)
-  nb_participants = 20
-  nb_enrollment_samples = 10
-  nb_test_samples = 5
+    # Define the relevant variables (number of enrollment and test samples, etc.)
+    nb_participants = 20
+    nb_enrollment_samples = 10
+    nb_test_samples = 5
 
-  # Define the expected size of the spectrogram
-  spect_height = 80
-  spect_width = 237
+    # Define the expected size of the spectrogram
+    spect_height = 80
+    spect_width = 237
 
-  # Load Model
-  from Model import get_triplet_network, get_embedding_cnn
-  model = get_triplet_network((spect_height, spect_width, 1))
-  embedding_cnn = get_embedding_cnn((spect_height, spect_width, 1))
+    # Load Model
+    from Model import get_triplet_network, get_embedding_cnn
+    model = get_triplet_network((spect_height, spect_width, 1))
+    embedding_cnn = get_embedding_cnn((spect_height, spect_width, 1))
 
-  # 20 participants with 10 enrollment samples each
-  X_enrollment = np.random.rand(nb_participants, nb_enrollment_samples, spect_height, spect_width)
-  n_samples_enrollment = [nb_enrollment_samples] * nb_participants
+    # 20 participants with 10 enrollment samples each
+    X_enrollment = np.random.rand(nb_participants, nb_enrollment_samples, spect_height, spect_width)
+    n_samples_enrollment = [nb_enrollment_samples] * nb_participants
 
-  # 20 participants with 5 test samples each
-  X_test = np.random.rand(nb_participants, nb_test_samples, spect_height, spect_width)
-  n_samples_test = [nb_test_samples] * nb_participants
+    # 20 participants with 5 test samples each
+    X_test = np.random.rand(nb_participants, nb_test_samples, spect_height, spect_width)
+    n_samples_test = [nb_test_samples] * nb_participants
 
-  weights_file = os.path.join("weights_testing", "rode_close", "20201108_065654__Parameters_rode_close_weights.h5")
+    weights_file = os.path.join("weights_testing", "rode_close", "20201108_065654__Parameters_rode_close_weights.h5")
 
-  # Load weights
-  model.load_weights(weights_file)
-  embedding_cnn.set_weights(model.get_weights())
+    # Load weights
+    model.load_weights(weights_file)
+    embedding_cnn.set_weights(model.get_weights())
 
-  for participant in range(nb_participants):
+    tp, fp, tn, fn = 4 * [0]
 
-    # Select the remaining n_test samples (different from the enrollment samples) from P1 as test samples
-    remaining_participant_list = list(range(nb_participants))
-    remaining_participant_list.remove(participant)
+    for participant in range(nb_participants):
+        # Select the remaining n_test samples (different from the enrollment samples) from P1 as test samples
+        remaining_participant_list = list(range(nb_participants))
+        remaining_participant_list.remove(participant)
 
-    # Retrieve images from P1
-    P1_enrollment = X_enrollment[participant, :, :, :].reshape(
+        # Retrieve images from P1
+        P1_enrollment = X_enrollment[participant, :, :, :].reshape(
         nb_enrollment_samples, spect_height, spect_width, 1
-    )
-    P1_test = X_test[participant, :, :, :].reshape(nb_test_samples, spect_height, spect_width, 1)
+        )
+        P1_test = X_test[participant, :, :, :].reshape(nb_test_samples, spect_height, spect_width, 1)
 
-    test_samples = X_test[remaining_participant_list, :, :, :].reshape(len(remaining_participant_list * nb_test_samples), spect_height, spect_width, 1)
+        test_samples = X_test[remaining_participant_list, :, :, :].reshape(len(remaining_participant_list * nb_test_samples), spect_height, spect_width, 1)
 
-    # Compute the embeddings
-    emb_P1_enrollment = embedding_cnn.predict(P1_enrollment)
-    emb_P1_test = embedding_cnn.predict(P1_test)
-    emb_others = embedding_cnn.predict(test_samples)
+        # Compute the embeddings
+        emb_P1_enrollment = embedding_cnn.predict(P1_enrollment)
+        emb_P1_test = embedding_cnn.predict(P1_test)
+        emb_others = embedding_cnn.predict(test_samples)
+
+        m = tf.keras.metrics.MeanTensor()
+
+        for test_sample in emb_P1_test:
+            for enrollment_sample in emb_P1_enrollment:
+                distance = K.sum(K.square(test_sample - enrollment_sample), axis=0)
+                m.update_state(distance)
+            mean_distance = m.result()
+            if mean_distance < THRESHOLD:
+                tp += 1
+            else:
+                fn += 1
+            m.reset_states()
+
+        for test_sample in emb_others:
+            for enrollment_sample in emb_P1_enrollment:
+                distance = K.sum(K.square(test_sample - enrollment_sample), axis=0)
+                m.update_state(distance)
+            mean_distance = m.result()
+            if mean_distance < THRESHOLD:
+                fp += 1
+            else:
+                tn += 1
+            m.reset_states()
+
+    acc = (tp + tn) / (tp + tn + fp + fn)
+    far = fp / (fp + tn)
+    frr = fn / (fn + tp)
   ```
   - More details on how to compute the distance metrics can be find in the file `07_VerificationTasks.py`. 
 
@@ -181,6 +210,8 @@ We have already trained our TripletCough network on a data set of voluntary coug
       print("ACC: ", acc)
       acc_model.append(acc)
       count += n_tasks
+      
+  mean_acc = sum(acc_model)/len(acc_model)
   ```
 
   - A more detailed implementation can be found in the python script: `03_2wayFewShotTesting.py`.
