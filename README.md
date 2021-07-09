@@ -322,7 +322,7 @@ These files also contain a function that implements the hinge loss for triplets,
 - Similar to `01a_DataPreprocessing_VoluntaryCoughs`, this script is used to preprocess the .wav files of reflex coughs into mel spectrograms. The sole difference between this script and the former is that the maximum number of used cough samples per participant is set to 500.
 
 ### 05.3. - 2_ModelTrainingValidation_TripletMining
-- Run this script to train the triplet network. When doing so, you must specify a parameters file, e.g. run `python 02_ModelTrainingValidation_TripletMining.py Parameters_64_0,001`. By default, the parameters file must be located in the same directory as the python script. A simple triplet mining heuristic is employed to select a better set of triplets to train on than sampling them randomly. A model checkpoint is set such that only the weights associated with the lowest validation loss are saved. Weight files are stored in the `weights` directory by default.
+- Run this script to train the triplet network. When doing so, you must specify a parameters file, e.g. run `python 02_ModelTrainingValidation_TripletMining.py params.Parameters_bs=8_lr=1e-2`. By default, the parameters file must be located in the same directory as the python script. A simple triplet mining heuristic is employed to select a better set of triplets to train on than sampling them randomly. A model checkpoint is set such that only the weights associated with the lowest validation loss are saved. Weight files are stored in the `weights` directory by default.
   
   <br>
 
@@ -331,7 +331,7 @@ These files also contain a function that implements the hinge loss for triplets,
   python ./02_ModelTrainingValidation_TripletMining.py parameter_package_import_name
 
   # Example:
-  python ./02_ModelTrainingValidation_TripletMining.py params.Parameters_8_1e-2
+  python ./02_ModelTrainingValidation_TripletMining.py params.params.Parameters_bs=8_lr=1e-2
   ```
   This assumes that you have a `params` file with all the relevant information inside. Templates of such files can be found in the `params/` directory.
 
