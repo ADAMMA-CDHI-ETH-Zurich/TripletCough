@@ -12,7 +12,7 @@ This repository contains the code to reproduce the experiments in the paper *Tri
 </div>
 
 ## 1 - How to use the pre-trained models
-We have already trained our TripletCough network on a data set of voluntary coughs recorded using the RØDE NT1000 studio microphone, as described in the paper. We provide you with the pre-trained model file in `weights_testing/rode_close/20201108_065654__Parameters_rode_close_weights.h5`. The code used to evaluate this pre-trained model can be found in the  section "Python Scripts" which explains how to run the various python scripts available for performing the identification and verification tests that are reported in the paper.
+We have already trained our TripletCough network on a data set of voluntary coughs recorded using the RØDE NT1000 studio microphone, as described in the paper. We provide you with the pre-trained model file in `weights_testing/rode_close/20201108_065654__Parameters_rode_close_weights.h5`. The pre-trained model files of various other recording devices used in our work can be found in the `weights_testing` directory. The code used to evaluate a pre-trained model can be found in the section "Python Scripts" which explains how to run the various python scripts available for performing the identification and verification tests that are reported in the paper. In the following, we provide you with the code snippets used in the Python scripts for evaluating verificaiton and identification tasks. In addition, for ease of use, we provide you with a Jupyter notebook `Demo.ipynb` that contains this code.
 
 ### 1.1 - Verification Task
 - To use the model for **Verification**, please follow the following procedure:
@@ -233,7 +233,7 @@ We have already trained our TripletCough network on a data set of voluntary coug
 
 - `dataFiles`: Directory should contain the raw .wav files of coughs. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The data in this folder are not publicly available to protect the privacy of the study's participants.
 
-- `data`: Directory contains the processed .pickle files containing the mel-scaled spectrograms of the coughs from `dataFiles`, which are then split into training, validation, and testing data. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The entire data set of the paper should be in this folder. **However**, due to privacy constraints we could not publicly share the data as we have to protect the privacy of the study participants. The demo data we included is in the pickle format and was generated with the following code:
+- `data`: Directory contains the processed .pickle files containing the mel-scaled spectrograms of the coughs from `dataFiles`, which are then split into training, validation, and testing data. The name of the directory can be changed and adjusted accordingly in the parameters file. **NOTE**: The entire data set of the paper should have been placed in this directory. **However**, due to privacy constraints we could not publicly share the data as we have to protect the privacy of the study participants. As a result, the demo data we included (in the pickle format) was generated randomly with the following code:
 
   ```python
   import pickle
