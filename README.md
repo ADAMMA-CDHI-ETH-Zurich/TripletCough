@@ -447,9 +447,9 @@ TODO
 
 
 Chair of Information Management at D-​MTEC at ETH Zürich:
-- [Dr. sc. Filipe Barata](https://github.com/pipo3000)
+- [*Dr. sc. Filipe Barata](https://github.com/pipo3000)
 - [David Cleres](https://github.com/dcleres)
-- [Stefan Jokic](https://github.com/sjokic)
+- [*Stefan Jokic](https://github.com/sjokic)
 
 
 *: Contributed equally.
