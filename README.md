@@ -331,7 +331,7 @@ These files also contain a function that implements the hinge loss for triplets,
   python ./02_ModelTrainingValidation_TripletMining.py parameter_package_import_name
 
   # Example:
-  python ./02_ModelTrainingValidation_TripletMining.py params.params.Parameters_bs=8_lr=1e-2
+  python ./02_ModelTrainingValidation_TripletMining.py params.Parameters_bs=8_lr=1e-2
   ```
   This assumes that you have a `params` file with all the relevant information inside. Templates of such files can be found in the `params/` directory.
 
