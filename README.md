@@ -340,7 +340,7 @@ These files also contain a function that implements the hinge loss for triplets,
 
   <br>
 
-  In summary, to run the code, please do the following, please do the following in the root directory of the repository: 
+  In summary, to run the code, please do the following in the root directory of the repository: 
   ``` bash
   python ./03_2wayFewShotTesting.py trained_weights_path data_folder_path K
   
