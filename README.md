@@ -423,6 +423,7 @@ These files also contain a function that implements the hinge loss for triplets,
 
 ## 7 - News
 - July 2021: Paper submitted for review.
+- February 2022: Paper accepted for publication.
 
 ## 8 - Requirements
 The following libraries are used:
