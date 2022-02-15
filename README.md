@@ -5,7 +5,7 @@
 [![DOI: XXX](https://zenodo.org/badge/doi/XXX/XXX.svg)](https://doi.org/XXX)   [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
 
-This repository contains the code to reproduce the experiments in the paper *TripletCough: Cougher Identification and Verification from Contact-Free Smartphone-Based Audio Recordings Using Metric Learning* by ([Stefan Jokic](https://github.com/sjokic), [Dr. sc. Filipe Barata](https://github.com/pipo3000))*, [David Cleres](https://github.com/dcleres), Frank Rassouli, Claudia Steurer-Stey, Milo A. Puhan, Martin Brutsche, and Elgar Fleisch.
+This repository contains the code to reproduce the experiments in the paper *TripletCough: Cougher Identification and Verification from Contact-Free Smartphone-Based Audio Recordings Using Metric Learning* by ([Stefan Jokić](https://github.com/sjokic), [Dr. sc. Filipe Barata](https://github.com/pipo3000))*, [David Cleres](https://github.com/dcleres), Frank Rassouli, Claudia Steurer-Stey, Milo A. Puhan, Martin Brutsche, and Elgar Fleisch.
 
 <div style="text-align:center" width="100%">
     <img width="50%" src="https://i.ibb.co/6HVH4yv/Triplet-Network-1.png">
@@ -450,7 +450,7 @@ TODO
 Chair of Information Management at D-​MTEC at ETH Zürich:
 - [*Dr. sc. Filipe Barata](https://github.com/pipo3000)
 - [David Cleres](https://github.com/dcleres)
-- [*Stefan Jokic](https://github.com/sjokic)
+- [*Stefan Jokić](https://github.com/sjokic)
 
 
 *: Contributed equally.
