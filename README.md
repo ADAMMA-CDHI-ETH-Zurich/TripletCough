@@ -438,18 +438,8 @@ pip install -r requirements.txt -U --no-cache-dir
 ```
 
 ## 9 - Cite this Work
-For now, please cite our Arxiv version:
 
-Jokic, Stefan, and Barata, Filipe et al. "TripletCough: Cougher Identification and Verification from Contact-Free Smartphone-Based Audio Recordings Using Metric Learning" (2021).
-
-```
-@article{jokicbarata2021tripletCough,
-  title={TripletCough: Cougher Identification and Verification from Contact-Free Smartphone-Based Audio Recordings Using Metric Learning},
-  author={Jokic, Stefan and Barata, Filipe and David, Cleres and Rassouli, Frank and Steurer-Stey, Claudia and Puhan, Milo and Brutsche, Martin and Fleisch, Elgar},
-  journal={XXX},
-  year={2021}
-}
-```
+TODO
 
 ## 10 - Core Team
 
