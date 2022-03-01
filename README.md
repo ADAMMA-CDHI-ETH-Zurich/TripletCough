@@ -442,7 +442,9 @@ pip install -r requirements.txt -U --no-cache-dir
 
 ## 9 - Cite this Work
 
-TODO
+(TODO)
+DOI 10.1109/JBHI.2022.3152944, IEEE Journal of
+Biomedical and Health Informatics
 
 ## 10 - Core Team
 
